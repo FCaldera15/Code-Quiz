@@ -5,27 +5,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>Document</title>
 </head>
+<header>
+    <h1 class="viewHighcore"><a href="./highscores.html">View Highscore</a></h1>
+    <h1 class="time"></h1>
+</header>
+
 
 <body>
+    <div id="intro">
+        <h1 id="title">Nintendo Quiz Challenge</h1>
+        <h2 id="description">Try to answer the following Nintendo-related questions within the time limit. Keep in mind
+            that incorrect answers will penalize your scoretime by ten seconds!</h2>
+        <button id="start">start</button>
+    </div>
 
-
-    <div id="quiz">
+    <div id="quiz" class="hideClass">
 
         <h1 id="question"></h1>
-
-        <button id="answer1"></button>
-        <button id="answer2"></button>
-        <button id="answer3"></button>
-        <button id="answer4"></button>
-
+        <div id="choices"></div>
 
     </div>
 
-
-
-
+    <div id="End" class="hideClass">
+        <h1 id="endTitle">All Done!</h1>
+        <h2 id="finalScore"></h2>
+        <h2 id="settingName">Enter initials: <textarea id="putName"></textarea><button id="submit">submit</button> </h2>
+    </div>
     <script src="./index.js"></script>
 </body>
 

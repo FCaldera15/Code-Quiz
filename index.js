@@ -1,24 +1,38 @@
-
-
+let introDiv = document.querySelector("#intro")
+let introTitle = document.querySelector("#title")
+let introDescription = document.querySelector("#description")
+let startButton = document.querySelector("#start")
 let quizDiv = document.querySelector("#quiz")
 let questionMain = document.querySelector("#question")
 let questionButton1 = document.querySelector("#answer1")
 let questionButton2 = document.querySelector("#answer2")
 let questionButton3 = document.querySelector("#answer3")
 let questionButton4 = document.querySelector("#answer4")
-
+let choiceDiv = document.querySelector("#choices")
+let timeEl = document.querySelector(".time")
+let endDiv = document.querySelector("#End")
+let endTitle = document.querySelector("#endTitle")
+let finalScore = document.querySelector("#finalScore")
+let settingName = document.querySelector("#settingName")
 let timer = 90
 
-let timerId = setInterval(function () {
-
-    timer -= 1
-    // console.log(timer);
-
-}, 1000)
 
 
+function setTime() {
+    let timerId = setInterval(function () {
 
+        timer -= 1
+        timeEl.textContent = "Time: " + timer;
 
+        if (timer <= 0) {
+            clearInterval(timerId);
+            quizDiv.setAttribute("class", "hideClass");
+            endDiv.classList.remove("hideclass")
+            renderEnd()
+        }
+
+    }, 1000);
+}
 
 let questions = [{ question: "What is the name of the main character in The Legend of Zelda series?", answers: ["Zelda", "Link", "Navi", "Ganondorf"], correctAnswer: "Link" },
 { question: "What is the name of the princess in the Mario series that Mario often rescues?", answers: ["Daisy", "Zelda", "Rosalina", "Peach"], correctAnswer: "Peach" },
@@ -29,31 +43,45 @@ let questions = [{ question: "What is the name of the main character in The Lege
 { question: "What is the name of the villainous character who serves as the main antagonist in the Super Mario Bros. games?", answers: ["Bowser", "Donkey kong", "Boo", "Goomba"], correctAnswer: "Bowser" }
 ]
 
+let questionChoices = questions.answers;
+let questionAnswer = questions.correctAnswer;
 let currentQuestion = 0
-renderQuestion();
+
+
+function checkAnswer() {
+    console.log(this.dataset.value)
+    if (this.dataset.value === questions[currentQuestion].correctAnswer) {
+        currentQuestion++
+        renderQuestion();
+    } else {
+        timer -= 10
+    }
+}
+
+function renderEnd() {
+}
 
 function renderQuestion() {
-
-
     questionMain.textContent = questions[currentQuestion].question;
-    questionButton1.textContent = questions[currentQuestion].answers[0];
-    questionButton2.textContent = questions[currentQuestion].answers[1];
-    questionButton3.textContent = questions[currentQuestion].answers[2];
-    questionButton4.textContent = questions[currentQuestion].answers[3]
-
+    choiceDiv.textContent = ""
+    for (let i = 0; i < questions[currentQuestion].answers.length; i++) {
+        let button = document.createElement("button")
+        button.textContent = questions[currentQuestion].answers[i]
+        button.setAttribute("data-value", questions[currentQuestion].answers[i])
+        button.addEventListener("click", checkAnswer)
+        choiceDiv.appendChild(button)
+    }
 }
 
 
-quizDiv.addEventListener("click", function (event) {
 
+startButton.addEventListener("click", function (event) {
     if (event.target.matches("button")) {
-        console.log("clicked!")
-
-        currentQuestion++
+        introDiv.setAttribute("class", "hideClass")
+        quizDiv.classList.remove("hideClass")
         renderQuestion();
-
+        setTime()
     }
 
-
-
 })
+
