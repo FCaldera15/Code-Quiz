@@ -14,8 +14,10 @@ let endDiv = document.querySelector("#End")
 let endTitle = document.querySelector("#endTitle")
 let finalScore = document.querySelector("#finalScore")
 let settingName = document.querySelector("#settingName")
+let submitButton = document.querySelector("#submit")
+let putName = document.querySelector("#putName")
 let timer = 90
-
+let highScores = JSON.parse(localStorage.getItem("highscores")) || []
 
 
 function setTime() {
@@ -24,10 +26,11 @@ function setTime() {
         timer -= 1
         timeEl.textContent = "Time: " + timer;
 
-        if (timer <= 0) {
+        if (timer <= 0 || currentQuestion === questions.length) {
             clearInterval(timerId);
             quizDiv.setAttribute("class", "hideClass");
             endDiv.classList.remove("hideclass")
+            // localStorage.setItem("timer", timer)
             renderEnd()
         }
 
@@ -59,6 +62,8 @@ function checkAnswer() {
 }
 
 function renderEnd() {
+    endDiv.classList.remove("hideClass")
+    finalScore.textContent = "Your final score is " + timer
 }
 
 function renderQuestion() {
@@ -84,4 +89,21 @@ startButton.addEventListener("click", function (event) {
     }
 
 })
+
+
+function gotoHighscore() {
+    window.location.href = "highscores.html";
+}
+
+
+submitButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    let userScore = {
+        initals: putName.value,
+        timer: timer,
+    }
+    highScores.push(userScore)
+    localStorage.setItem("highscores", JSON.stringify(highScores));
+    renderMessege();
+});
 
