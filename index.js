@@ -69,7 +69,7 @@ function renderEnd() {
     quizDiv.setAttribute('class', 'hideClass')
     endDiv.classList.remove("hideClass")
     finalScore.textContent = "Your final score is " + timer
-    clearInterval(timerId);
+    clearInterval(setTime.timerId);
 }
 
 //function to render questions and move on to next question
@@ -82,12 +82,8 @@ function renderQuestion() {
         button.setAttribute("data-value", questions[currentQuestion].answers[i])
         button.addEventListener("click", checkAnswer)
         choiceDiv.appendChild(button)
-        // if (currentQuestion === questions.length - 1) {
-        //     renderEnd()
-        // }
     }
 }
-
 
 //Start button function
 startButton.addEventListener("click", function (event) {
