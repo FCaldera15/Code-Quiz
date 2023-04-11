@@ -30,7 +30,6 @@ function setTime() {
             clearInterval(timerId);
             quizDiv.setAttribute("class", "hideClass");
             endDiv.classList.remove("hideclass")
-            // localStorage.setItem("timer", timer)
             renderEnd()
         }
 
@@ -62,8 +61,10 @@ function checkAnswer() {
 }
 
 function renderEnd() {
+    quizDiv.setAttribute('class', 'hideClass')
     endDiv.classList.remove("hideClass")
     finalScore.textContent = "Your final score is " + timer
+    clearInterval(timerId);
 }
 
 function renderQuestion() {
@@ -75,6 +76,9 @@ function renderQuestion() {
         button.setAttribute("data-value", questions[currentQuestion].answers[i])
         button.addEventListener("click", checkAnswer)
         choiceDiv.appendChild(button)
+        // if (currentQuestion === questions.length - 1) {
+        //     renderEnd()
+        // }
     }
 }
 
@@ -104,6 +108,5 @@ submitButton.addEventListener("click", function (event) {
     }
     highScores.push(userScore)
     localStorage.setItem("highscores", JSON.stringify(highScores));
-    renderMessege();
 });
 
