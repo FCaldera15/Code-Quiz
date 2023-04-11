@@ -1,3 +1,4 @@
+//Naming the elements according to the id's placed in the html
 let introDiv = document.querySelector("#intro")
 let introTitle = document.querySelector("#title")
 let introDescription = document.querySelector("#description")
@@ -19,7 +20,7 @@ let putName = document.querySelector("#putName")
 let timer = 90
 let highScores = JSON.parse(localStorage.getItem("highscores")) || []
 
-
+//Setting the timer for the quiz
 function setTime() {
     let timerId = setInterval(function () {
 
@@ -36,6 +37,8 @@ function setTime() {
     }, 1000);
 }
 
+
+//The questions for the quiz
 let questions = [{ question: "What is the name of the main character in The Legend of Zelda series?", answers: ["Zelda", "Link", "Navi", "Ganondorf"], correctAnswer: "Link" },
 { question: "What is the name of the princess in the Mario series that Mario often rescues?", answers: ["Daisy", "Zelda", "Rosalina", "Peach"], correctAnswer: "Peach" },
 { question: "In the Mario series, what is the name of the character who is Mario`s brother?", answers: ["Yoshi", "Bowser", "Toad", "Luigi"], correctAnswer: "Luigi" },
@@ -45,11 +48,12 @@ let questions = [{ question: "What is the name of the main character in The Lege
 { question: "What is the name of the villainous character who serves as the main antagonist in the Super Mario Bros. games?", answers: ["Bowser", "Donkey kong", "Boo", "Goomba"], correctAnswer: "Bowser" }
 ]
 
+//Making new elements to judge if answer is right or wrong
 let questionChoices = questions.answers;
 let questionAnswer = questions.correctAnswer;
 let currentQuestion = 0
 
-
+// continue next question if answer right or ten seconds off if answer is wrong
 function checkAnswer() {
     console.log(this.dataset.value)
     if (this.dataset.value === questions[currentQuestion].correctAnswer) {
@@ -60,6 +64,7 @@ function checkAnswer() {
     }
 }
 
+//Finished quiz and get score, put name and submit 
 function renderEnd() {
     quizDiv.setAttribute('class', 'hideClass')
     endDiv.classList.remove("hideClass")
@@ -67,6 +72,7 @@ function renderEnd() {
     clearInterval(timerId);
 }
 
+//function to render questions and move on to next question
 function renderQuestion() {
     questionMain.textContent = questions[currentQuestion].question;
     choiceDiv.textContent = ""
@@ -83,7 +89,7 @@ function renderQuestion() {
 }
 
 
-
+//Start button function
 startButton.addEventListener("click", function (event) {
     if (event.target.matches("button")) {
         introDiv.setAttribute("class", "hideClass")
@@ -94,12 +100,12 @@ startButton.addEventListener("click", function (event) {
 
 })
 
-
+//go to highscore page
 function gotoHighscore() {
     window.location.href = "highscores.html";
 }
 
-
+//submit button
 submitButton.addEventListener("click", function (event) {
     event.preventDefault();
     let userScore = {
