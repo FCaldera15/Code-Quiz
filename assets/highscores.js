@@ -1,13 +1,13 @@
+// Grabbing the high score timer and initials 
 let highScores = JSON.parse(localStorage.getItem("highscores")) || []
+// Creating New element 
+let nameScore = document.getElementById("nameScore")
+//Created a for loop to place the high scores 
+for (let i = 0; i < highScores.length; i++) {
 
+    const pTag = `<p>Initials: ${highScores[i].initals}, Score: ${highScores[i].timer}</p>`
+    nameScore.insertAdjacentHTML("beforeend", pTag)
 
+}
 
-
-// function renderMessege() {
-//     let lastScore = JSON.parse(localStorage.getItem("nameScore"));
-//     if (lastScore !== null) {
-document.getElementById("nameScore").innerHTML = localStorage.getItem("highscores");
-//     }
-// }
 console.log(highScores)
-// renderMessege();

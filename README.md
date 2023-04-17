@@ -20,4 +20,4 @@ https://fcaldera15.github.io/Code-Quiz/
 
 N/A
 
-![alt text](./assets/Screenshot%20(7).png)
+![alt text](./assets/Screenshot%20(10).png)

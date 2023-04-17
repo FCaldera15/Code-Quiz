@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./assets/style.css">
     <title>Document</title>
 </head>
 <header>
@@ -15,28 +15,28 @@
 
 
 <body>
+    <!--This would be the intro page.-->
     <div id="intro">
         <h1 id="title">Nintendo Quiz Challenge</h1>
         <h2 id="description">Try to answer the following Nintendo-related questions within the time limit. Keep in mind
             that incorrect answers will penalize your scoretime by ten seconds!</h2>
         <button id="start">start</button>
     </div>
-
+    <!--This would be the actual quiz-->
     <div id="quiz" class="hideClass">
 
         <h1 id="question"></h1>
         <div id="choices"></div>
 
     </div>
-
+    <!--This would be the end page that contains the score timer and putting the user initals-->
     <div id="End" class="hideClass">
         <h1 id="endTitle">All Done!</h1>
         <h2 id="finalScore"></h2>
         <ul id="scoreboard"></ul>
-        <h2 id="settingName">Enter initials: <input id="putName"></input><button onclick="gotoHighscore()"
-                id="submit">submit</button> </h2>
+        <h2 id="settingName">Enter initials: <input id="putName"></input><button id="submit">submit</button> </h2>
     </div>
-    <script src="./index.js"></script>
+    <script src="./assets/index.js"></script>
 </body>
 
 </html>
